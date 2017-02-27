@@ -1,2 +1,4 @@
 nbproject/
 cache/
+**/.idea
+**/*.pyc

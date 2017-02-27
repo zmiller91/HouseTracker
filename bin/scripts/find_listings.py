@@ -1,14 +1,16 @@
 import json
 import requests
 import mysql.connector
+import conf
 
-city = 'Denver'
 max_price = 350000
 page = 1
+cities = ['Denver', 'Westminster', 'Broomfield', 'Arvada', 'Commerce City', 'Lakewood', 'Thorton', 'Northglen', 'Aurora',
+          'Golden', 'Wheat Ridge']
 
-connection = mysql.connector.connect(user='root', password='', host='127.0.0.1', database='houses')
+connection = mysql.connector.connect(user=conf.db_user, password=conf.db_passwd, host=conf.db_addr, database=conf.db_name)
 
-def getListings(page):
+def getListings(page, city):
 
     headers = {
         'X-Requested-With': 'XMLHttpRequest'
@@ -92,20 +94,21 @@ def getSchools(listing):
             'h': default
         }
 
-while True:
-    print "----------------------" + "\n" + "Page: " + str(page) + "\n" + "----------------------"
-    # Select the page
-    listings = getListings(page)
-    if len(listings) == 0:
-        break
+for city in cities:
+    while True:
+        print "----------------------" + "\n" + "Page: " + str(page) + "\n" + "----------------------"
+        # Select the page
+        listings = getListings(page, city)
+        if len(listings) == 0:
+            break
 
-    # Parse and load the information
-    for i in range(0, len(listings)):
-        print listings[i]['full_address']
-        listings[i]['schools'] = getSchools(listings[i])
-        insertListing(listings[i], connection)
-        insertSchools(listings[i]['schools'], connection)
+        # Parse and load the information
+        for i in range(0, len(listings)):
+            print listings[i]['full_address']
+            listings[i]['schools'] = getSchools(listings[i])
+            insertListing(listings[i], connection)
+            insertSchools(listings[i]['schools'], connection)
 
-    page = page + 1
+        page = page + 1
 
 connection.close()
