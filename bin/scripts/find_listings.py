@@ -4,7 +4,6 @@ import mysql.connector
 import conf
 
 max_price = 350000
-page = 1
 cities = ['Denver', 'Westminster', 'Broomfield', 'Arvada', 'Commerce City', 'Lakewood', 'Thorton', 'Northglen', 'Aurora',
           'Golden', 'Wheat Ridge']
 
@@ -95,6 +94,7 @@ def getSchools(listing):
         }
 
 for city in cities:
+    page = 1
     while True:
         print "----------------------" + "\n" + "Page: " + str(page) + "\n" + "----------------------"
         # Select the page
