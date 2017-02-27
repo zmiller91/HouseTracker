@@ -1,0 +1,42 @@
+<div id="container" class="container">
+    
+    <h1 class="page-header">Colorado House Listings
+        <a class="pull-right" ng-click="filter()">Filter</a>
+    </h1>
+    
+        <div class="row" ng-repeat="listing in listings" style="margin-bottom: 15px">
+            <div class="col-md-7">
+                <img ng-src="{{listing.primary_photo}}" style="max-height: 500px; max-width: 500px">
+            </div>
+            <div class="col-md-5">
+                
+                <h3>{{listing.neighborhood}} <small>{{listing.date_listed}}</small></h3>
+                <h4>{{listing.address}}</h4>
+                
+                <div class="row">
+                    <div class="col-sm-4"><strong>Year </strong> {{listing.year}}</div>
+                    <div class="col-sm-4"><strong>Price: </strong> {{listing.price | currency}}</div>
+                    <div class="col-sm-4"><strong>Taxes: </strong> {{listing.taxes}}</div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-4"><strong>Beds: </strong> {{listing.beds}}</div>
+                    <div class="col-sm-4"><strong>Baths: </strong> {{listing.baths}}</div>
+                    <div class="col-sm-4"><strong>Sq. Ft. </strong> {{listing.sq_ft  | number:0}}</div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-4"><strong>K-5: </strong> {{listing.es_rating}}</div>
+                    <div class="col-sm-4"><strong>6-8: </strong> {{listing.ms_rating}}</div>
+                    <div class="col-sm-4"><strong>9-12: </strong> {{listing.hs_rating}}</div>
+                </div>
+                
+                <div class="row" ng-repeat="rows in listing.distances">
+                    <div class="col-sm-4" ng-repeat="(k, v) in rows"><strong>{{k}}: </strong> {{v | number:1}}</div>
+                </div>
+                
+                <p>{{listing.remarks}}</p>
+                <a class="btn btn-primary" ng-href="{{listing.url}}">View Listing<span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+</div>

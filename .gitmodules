@@ -1,0 +1,12 @@
+[submodule "lib/php/common"]
+	path = lib/php/common
+	url = https://www.github.com/zmiller91/php-common.git
+[submodule "public/lib/requirejs"]
+	path = public/lib/requirejs
+	url = https://github.com/requirejs/requirejs
+[submodule "public/lib/bootstrap_list_view"]
+	path = public/lib/bootstrap_list_view
+	url = https://github.com/BlackrockDigital/startbootstrap-1-col-portfolio
+[submodule "public/lib/startbootstrap-1-col-portfolio"]
+	path = public/lib/startbootstrap-1-col-portfolio
+	url = https://github.com/BlackrockDigital/startbootstrap-1-col-portfolio

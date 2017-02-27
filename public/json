@@ -1,0 +1,74 @@
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "350",
+               "short_name" : "350",
+               "types" : [ "subpremise" ]
+            },
+            {
+               "long_name" : "11030",
+               "short_name" : "11030",
+               "types" : [ "street_number" ]
+            },
+            {
+               "long_name" : "Circle Point Road",
+               "short_name" : "Circle Point Rd",
+               "types" : [ "route" ]
+            },
+            {
+               "long_name" : "North Central Westminster",
+               "short_name" : "North Central Westminster",
+               "types" : [ "neighborhood", "political" ]
+            },
+            {
+               "long_name" : "Westminster",
+               "short_name" : "Westminster",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "Jefferson County",
+               "short_name" : "Jefferson County",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "Colorado",
+               "short_name" : "CO",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : [ "country", "political" ]
+            },
+            {
+               "long_name" : "80020",
+               "short_name" : "80020",
+               "types" : [ "postal_code" ]
+            }
+         ],
+         "formatted_address" : "11030 Circle Point Rd #350, Westminster, CO 80020, USA",
+         "geometry" : {
+            "location" : {
+               "lat" : 39.8967681,
+               "lng" : -105.0736619
+            },
+            "location_type" : "ROOFTOP",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 39.8981170802915,
+                  "lng" : -105.0723129197085
+               },
+               "southwest" : {
+                  "lat" : 39.8954191197085,
+                  "lng" : -105.0750108802915
+               }
+            }
+         },
+         "place_id" : "EjYxMTAzMCBDaXJjbGUgUG9pbnQgUmQgIzM1MCwgV2VzdG1pbnN0ZXIsIENPIDgwMDIwLCBVU0E",
+         "types" : [ "subpremise" ]
+      }
+   ],
+   "status" : "OK"
+}

@@ -1,0 +1,79 @@
+<div class="modal-header">
+    <h3 class="modal-title">
+        Refine Search
+    </h3> 
+</div>
+<div class="modal-body activity-modal">
+    <form>
+        
+      <div class="form-group row">
+        <div class="col-sm-4">
+          <label>Min. Price</label>
+          <input class="form-control" type="text" ng-model="filter.min_price">        
+        </div>
+        <div class="col-sm-4">
+          <label>Max. Price</label>
+          <input class="form-control" type="text" ng-model="filter.max_price">        
+        </div>
+        <div class="col-sm-4">
+          <label>Min. Square Feet</label>
+          <input class="form-control" type="text" ng-model="filter.min_sqft">        
+        </div>
+      </div>
+        
+      <div class="form-group row">
+        <div class="col-sm-4">
+          <label>Min. Year</label>
+          <input class="form-control" type="text" ng-model="filter.min_year">        
+        </div>
+        <div class="col-sm-4">
+          <label>Min. Bedrooms</label>
+          <input class="form-control" type="text" ng-model="filter.min_beds">        
+        </div>
+        <div class="col-sm-4">
+          <label>Min. Bathrooms</label>
+          <input class="form-control" type="text" ng-model="filter.min_baths">        
+        </div>
+      </div>
+        
+      <div class="form-group row">
+        <div class="col-sm-4">
+          <label>K-5 Rating</label>
+          <select class="form-control" id="elementary" 
+                  ng-model="filter.es" ng-options="o for o in ratings">
+          </select>      
+        </div>
+        <div class="col-sm-4">
+          <label>6-8 Rating</label>
+          <select class="form-control" id="middle"
+                  ng-model="filter.ms" ng-options="o for o in ratings">
+          </select>     
+        </div>
+        <div class="col-sm-4">
+          <label>9-12 Rating</label>
+          <select class="form-control" id="high"
+                  ng-model="filter.hs" ng-options="o for o in ratings">
+          </select>  
+        </div>
+      </div>
+        
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <label>Distances (name | address | min. distance)</label>
+          <textarea class="form-control" rows="3" ng-model="filter.distances"></textarea>      
+        </div>
+      </div>
+        
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <label>City Blacklist</label>
+          <textarea class="form-control" rows="3" ng-model="filter.not_city"></textarea>      
+        </div>
+      </div>
+        
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" ng-click="apply()">Apply</button>
+</div>
