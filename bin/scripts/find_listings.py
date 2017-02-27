@@ -4,7 +4,7 @@ import mysql.connector
 import conf
 
 max_price = 350000
-cities = ['Denver', 'Westminster', 'Broomfield', 'Arvada', 'Commerce City', 'Lakewood', 'Thorton', 'Northglen', 'Aurora',
+cities = ['Denver', 'Westminster', 'Broomfield', 'Arvada', 'Commerce City', 'Lakewood', 'Thornton', 'Northglenn', 'Aurora',
           'Golden', 'Wheat Ridge']
 
 connection = mysql.connector.connect(user=conf.db_user, password=conf.db_passwd, host=conf.db_addr, database=conf.db_name)
