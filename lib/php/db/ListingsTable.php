@@ -29,7 +29,7 @@ class ListingsTable extends BaseTable {
         select 
         mls_id, primary_photo, city, address, taxes, es.rating as es_rating, 
         ms.rating as ms_rating, hs.rating as hs_rating, year, beds, baths, 
-        price, sq_ft, price_per_sqft, date_listed, neighborhood, remarks, url
+        price, sq_ft, price_per_sqft, date_listed, neighborhood, remarks, url, type
                 
         $distanceCriteria
 

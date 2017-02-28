@@ -1,7 +1,12 @@
 <div id="container" class="container">
     
     <h1 class="page-header">Colorado House Listings
-        <a class="pull-right" ng-click="filter()">Filter</a>
+        <small>
+          <a ng-click="filter()" style="cursor: pointer;">
+            Filter <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </a>
+        </small>
+        <i ng-show="loading" class="pull-right fa fa-spinner fa-spin fa-fw"></i>
     </h1>
     
         <div class="row" ng-repeat="listing in listings" style="margin-bottom: 15px">
@@ -10,11 +15,12 @@
             </div>
             <div class="col-md-5">
                 
-                <h3>{{listing.neighborhood}} <small>{{listing.date_listed}}</small></h3>
+                <h3>{{listing.neighborhood}} <small>{{parse(listing.date_listed)  | date: "MMM dd, yyyy" }}</small></h3>
                 <h4>{{listing.address}}</h4>
+                <h5>{{listing.type}}</h5>
                 
                 <div class="row">
-                    <div class="col-sm-4"><strong>Year </strong> {{listing.year}}</div>
+                    <div class="col-sm-4"><strong>Year: </strong> {{listing.year}}</div>
                     <div class="col-sm-4"><strong>Price: </strong> {{listing.price | currency}}</div>
                     <div class="col-sm-4"><strong>Taxes: </strong> {{listing.taxes}}</div>
                 </div>
@@ -36,7 +42,7 @@
                 </div>
                 
                 <p>{{listing.remarks}}</p>
-                <a class="btn btn-primary" ng-href="{{listing.url}}">View Listing<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-primary" ng-href="" ng-click="viewListing(listing.url)">View Listing<span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
 </div>

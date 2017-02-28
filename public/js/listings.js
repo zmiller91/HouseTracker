@@ -1,11 +1,12 @@
 define([
 ], function(){return{init: function(app) {
 
-        app.controller("ListingsCtrl", function(ListingsData, $uibModal, $scope)
+        app.controller("ListingsCtrl", function(ListingsData, $uibModal, $scope, $window)
         {
             $scope.listings = [];
             $scope.houseTypes = [];
             $scope.appliedFilter = null;
+            $scope.loading = false;
             
             $scope.filter = function() {
                 $uibModal.open({
@@ -28,6 +29,14 @@ define([
                     update();
                 });
             };
+            
+            $scope.parse = function(date) {
+                return new Date(Date.parse(date));
+            };
+            
+            $scope.viewListing = function(url) {
+                $window.open(url, '_blank');
+            }
 
             var update = function() {
                 
@@ -35,11 +44,15 @@ define([
                     ListingsData.getHouseTypes(
                         function(types) {
                             $scope.houseTypes = types;
+                        }, 
+                        function() {
                         }
                     );
                 }
                 
-                ListingsData.get($scope.appliedFilter, function(listings) {
+                $scope.loading = true;
+                ListingsData.get($scope.appliedFilter, 
+                function(listings) {
                     for(var l in listings) {
                         
                         // Get all the keys that start with 'distances_'
@@ -54,6 +67,10 @@ define([
                     }
                     
                     $scope.listings = listings;
+                    $scope.loading = false;
+                },
+                function() {
+                    $scope.loading = false;
                 });
             };
             angular.element(document).ready(update);
