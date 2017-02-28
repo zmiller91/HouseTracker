@@ -40,16 +40,18 @@ def insertListing(listing, connection):
     sql = '''
             REPLACE INTO listings
             (mls_id, city, state, zip, address, year, sq_ft, beds, baths, price, price_per_sqft, taxes, floors,
-                elementary_school, middle_school, high_school, neighborhood, remarks, primary_photo, date_listed, lat, lng, url)
+                elementary_school, middle_school, high_school, neighborhood, remarks, primary_photo, date_listed, lat,
+                lng, url, type, modified_date)
             VALUES
             ("{0}", "{1}", "{2}", "{3}", "{4}", "{5}", "{6}", "{7}", "{8}", "{9}", "{10}", "{11}", "{12}", "{13}",
-                "{14}", "{15}", "{16}", {17}, "{18}", "{19}", "{20}", "{21}", "{22}");
+                "{14}", "{15}", "{16}", {17}, "{18}", "{19}", "{20}", "{21}", "{22}", "{23}", NOW());
         '''.format(listing['mls_id'], listing['city'], listing['state'], listing['zip'], listing['full_address'],
            listing['year'], listing["sq_ft"], listing['beds'], listing['baths_total'], listing['price'],
                    listing['price_per_sqft'], listing["non_mapped_fields"]['Taxes'], listing['floors'],
                    listing['schools']['e']['name'], listing['schools']['m']['name'], listing['schools']['h']['name'],
                    listing['neighborhood'], json.dumps(listing['remarks'].encode('ascii', 'ignore')),
-                   listing['primary_photo'], listing['date_listed'], listing['lat'], listing['lng'], listing['url'])
+                   listing['primary_photo'], listing['date_listed'], listing['lat'], listing['lng'], listing['url'],
+                   listing['type'])
 
     connection.cursor().execute(sql)
     connection.commit()
@@ -104,6 +106,7 @@ for city in cities:
 
         # Parse and load the information
         for i in range(0, len(listings)):
+            print json.dumps(listings[i])
             print listings[i]['full_address']
             listings[i]['schools'] = getSchools(listings[i])
             insertListing(listings[i], connection)

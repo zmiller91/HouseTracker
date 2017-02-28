@@ -20,6 +20,7 @@ class ListingsTable extends BaseTable {
         $notCities = !empty($input['not_city']) ? "AND city NOT IN ('".implode("','", $input['not_city'])."')" : "";
         $distanceCriteria = !empty($input['distances']) ? ", ".$this->getDistancesCriteria($input['distances']) : "";
         $distanceFilter = !empty($input['distances']) ? $this->getDistanceFilter($input['distances']) : "";
+        $typeFilter = !empty($input['type']) ? "AND type IN ('".implode("','", $input['type'])."')" : "";
                 
         $sql = 
 <<<EOD
@@ -43,7 +44,7 @@ class ListingsTable extends BaseTable {
         and primary_photo != 'https://s3.amazonaws.com/irecdn/themes/common/no-image-small.jpg'
                 
          $es $ms $hs $year $minSqft $minPrice $minBeds $minBaths $maxPrice 
-         $notCities
+         $notCities $typeFilter
     )  a
 
     where 1 = 1
@@ -51,6 +52,15 @@ class ListingsTable extends BaseTable {
     ORDER BY date_listed DESC
 EOD;
         
+        return $this->execute($sql);
+    }
+    
+    public function getDistinctTypes() {
+        $sql = 
+<<<EOD
+            SELECT DISTINCT type
+            FROM listings;
+EOD;
         return $this->execute($sql);
     }
     

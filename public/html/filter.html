@@ -59,6 +59,43 @@
         
       <div class="form-group row">
         <div class="col-sm-12">
+          <label>House Type</label> 
+                
+          <div class="row" ng-repeat="types in houseTypes">
+            <div class="col-sm-3" ng-repeat="t in types">
+              <div ng-switch on="t.type">
+                <div ng-switch-when="Attached Single Family">
+                  <input
+                    type="checkbox"
+                    name="selected[]"
+                    value="{{t.type}}"
+                    ng-model="t.value">
+                  Multi Family
+                </div>
+                <div ng-switch-when="Detached Single Family">
+                  <input
+                    type="checkbox"
+                    name="selected[]"
+                    value="{{t.type}}"
+                    ng-model="t.value">
+                  Single Family
+                </div>
+                <div ng-switch-default>
+                  <input
+                    type="checkbox"
+                    name="selected[]"
+                    value="{{t.type}}"
+                    ng-model="t.value">
+                 {{t.type}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+      <div class="form-group row">
+        <div class="col-sm-12">
           <label>Distances (name | address | min. distance)</label>
           <textarea class="form-control" rows="3" ng-model="filter.distances"></textarea>      
         </div>

@@ -1,3 +1,6 @@
+create database houses;
+use houses;
+
 create table listings (
 	mls_id varchar(25),
     lat varchar(256),
@@ -14,6 +17,7 @@ create table listings (
     price_per_sqft varchar(256),
     taxes varchar(15),
     floors varchar(256),
+    type varchar(256) default 'Unknown',
     elementary_school varchar(256),
     middle_school varchar(256),
     high_school varchar(256),
@@ -22,6 +26,7 @@ create table listings (
     primary_photo varchar(256),
     url varchar(256),
     date_listed datetime,
+    modified_date datetime,
     primary key (mls_id)
 );
 
