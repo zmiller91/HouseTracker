@@ -106,7 +106,6 @@ for city in cities:
 
         # Parse and load the information
         for i in range(0, len(listings)):
-            print json.dumps(listings[i])
             print listings[i]['full_address']
             listings[i]['schools'] = getSchools(listings[i])
             insertListing(listings[i], connection)
