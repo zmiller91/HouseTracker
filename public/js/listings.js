@@ -3,6 +3,9 @@ define([
 
         app.controller("ListingsCtrl", function(ListingsData, $uibModal, $scope, $window)
         {
+            var savedKey = 'zmhouses-saved';
+            $scope.saved = localStorage[savedKey] ? JSON.parse(localStorage[savedKey]) : [];
+            $scope.savedFilter = false;
             $scope.listings = [];
             $scope.houseTypes = [];
             $scope.appliedFilter = null;
@@ -28,6 +31,22 @@ define([
                     $scope.appliedFilter = filter;
                     update();
                 });
+            };
+            
+            $scope.save = function(listing) {
+                listing.saved = true;
+                if($scope.saved.indexOf(listing['mls_id']) > -1) {
+                    return;
+                }
+                
+                $scope.saved.push(listing['mls_id']);
+                localStorage.setItem(savedKey, JSON.stringify($scope.saved));
+            };
+            
+            $scope.remove = function(listing) {
+                listing.saved = false;
+                $scope.saved.splice($scope.saved.indexOf(listing['mls_id']), 1);
+                localStorage.setItem(savedKey, JSON.stringify($scope.saved));
             };
             
             $scope.parse = function(date) {
@@ -64,6 +83,7 @@ define([
                         }, {});
                         
                         listings[l]['distances'] = ListingsData.chunk(distances, 3);
+                        listings[l]['saved'] = $scope.saved.indexOf(listings[l]['mls_id']) > -1;
                     }
                     
                     $scope.listings = listings;

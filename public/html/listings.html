@@ -2,20 +2,36 @@
     
     <h1 class="page-header">Colorado House Listings
         <small>
-          <a ng-click="filter()" style="cursor: pointer;">
+          <a ng-click="filter()" style="cursor: pointer; padding-left: 15px">
             Filter <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </a>
+          <a ng-click="savedFilter = !savedFilter" style="cursor: pointer; padding-left: 15px">
+              <span ng-show="!savedFilter">Saved</span>
+              <span ng-show="savedFilter">All</span>
           </a>
         </small>
         <i ng-show="loading" class="pull-right fa fa-spinner fa-spin fa-fw"></i>
     </h1>
     
-        <div class="row" ng-repeat="listing in listings" style="margin-bottom: 15px">
+        <div class="row" ng-repeat="listing in listings | filter: (savedFilter || '') && {saved: true}" 
+             style="margin-bottom: 15px">
             <div class="col-md-7">
                 <img ng-src="{{listing.primary_photo}}" style="max-height: 500px; max-width: 500px">
             </div>
             <div class="col-md-5">
                 
-                <h3>{{listing.neighborhood}} <small>{{parse(listing.date_listed)  | date: "MMM dd, yyyy" }}</small></h3>
+                <h3>
+                  {{listing.neighborhood}} 
+                  <small>{{parse(listing.date_listed)  | date: "MMM dd, yyyy" }}</small>
+                  <span ng-click="remove(listing)" class="pull-right">
+                    <i class="fa fa-star" aria-hidden="true" 
+                       ng-show="listing.saved"  style="color: gold; cursor: pointer;"></i>
+                  </span>
+                  <span ng-click="save(listing)" class="pull-right">
+                      <i class="fa fa-star-o" aria-hidden="true" 
+                         ng-show="!listing.saved" style="color: gold; cursor: pointer;"></i>
+                  </span>
+                </h3>
                 <h4>{{listing.address}}</h4>
                 <h5>{{listing.type}}</h5>
                 
